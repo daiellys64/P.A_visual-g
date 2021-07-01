@@ -1,32 +1,54 @@
-algoritmo "saldo"
+Algoritmo "saldo"
 
 var
-
-saque,saldo, saldofinal: real
-nulo,positivo, negativo: logico
+login, senha: caracter
+opcao: inteiro
+saldoinicial, saque, deposito, saldofinal: real
 
 inicio
-// entrada
+//entrada
 
-escreval ("Qual o seu saldo atual?")
-leia (saldo)
+escreval ("Digite seu login e senha:")
+escreval ("Login")
+leia (login)
+escreval ("Senha")
+leia (senha)
 
-escreval ("Qual valor você quer retirar?")
-leia (saque)
+//processamento
+se (login="admin") e (senha="1234") entao
+   escreval ("Acesso liberado)
+   escreval ("digite um saldo inicial :")
+   leia (saldoinicial)
+   escreval ("o que deseja fazer:")
+   escreval ("1-- Saque")
+   escreval ("2-- Depósito")
+   escreval ("3-- Visualizar saldo")
+   leia (opcao)
+   escolha opcao
+   
+      caso 1
+           escreval ("--- SACAR ---")
+           escreval ("Digite o valor que deseja sacar:")
+           leia (saque)
+           saldofinal <- (saldoinicial-saque)
 
-// processamento
+           escreval ("Você retirou R$",saque, " ficando com um saldo de R$",saldofinal)
 
-saldofinal <- (saldo-saque)
+      caso 2
+           escreval ("--- DEPOSITAR ---")
+           escreval ("Digite o valor que deseja depositar em sua conta:")
+           leia (deposito)
+           saldofinal <- (saldoinicial+deposito)
+           escreval ("Você depositou R$",deposito," ficando com um saldo de R$",saldofinal)
 
-negativo <- (saldofinal <0)
-positivo <- (saldofinal> 0)
-nulo <- (saldofinal = 0)
+      caso 3
+           escreval ("--- VISUALIZAR SALDO ---")
+           escreval ("Seu saldo atual é de R$",saldoinicial)
+   fimescolha
 
-// saída
-escreval ("O seu saldo final é de:", saldofinal)
 
-escreval ("negativo:" ,negativo)
-escreval ("positivo:", positivo)
-escreval ("nulo:", nulo)
-
-Fimalgoritmo
+ou
+     escreval ("login ou senha incorretos!")
+     escreval ("tente novamente")
+fimse
+fimalgoritmo
